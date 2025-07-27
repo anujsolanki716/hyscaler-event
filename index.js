@@ -19,8 +19,8 @@ const app = express();
 
 //  Middleware
 app.use(helmet()); // Secure headers
-app.use(cors({ origin: 'http://localhost:5173' })); // Allow frontend
-app.use(express.json());
+app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // Allow frontend
+
 
 // Rate limiting
 const limiter = rateLimit({
@@ -29,7 +29,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
